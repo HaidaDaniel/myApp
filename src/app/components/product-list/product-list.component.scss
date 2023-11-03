@@ -1,7 +1,19 @@
 .product-list {
-    display: flex;
-    width: 100%;
-    justify-content: center;
-    flex-wrap: wrap;
-    flex-direction: row;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+}
+.product-item {
+  width: calc(
+    25% - 0.6rem
+  ); /* 25% для 4 товаров в ширину и -0.6rem для учета отступов */
+  margin: 0.3rem;
+  display: inline-block; /* Отображение товаров в ряд */
+
+  @media (max-width: 768px) {
+    width: calc(50% - 0.6rem);
+  }
 }

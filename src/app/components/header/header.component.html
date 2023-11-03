@@ -1,11 +1,10 @@
 <mat-toolbar color="primary">
+    <mat-button-toggle [value]="'shop'">Shop</mat-button-toggle>
 
-    <span>Shop</span>
 
     <span class="example-spacer"></span>
+    <mat-button-toggle [value]="'login'">Login</mat-button-toggle>
+    <mat-button-toggle [value]="'register'">Register</mat-button-toggle>
 
-    <mat-tab-group>
-        <mat-tab label="Login"></mat-tab>
-        <mat-tab label="Register"></mat-tab>
-    </mat-tab-group>
+
 </mat-toolbar>
