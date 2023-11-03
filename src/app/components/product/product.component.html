@@ -1,0 +1,21 @@
+<div class="product-item" data-testid="product-item">
+    <mat-card class="card-styled">
+        <div class="product-image-box">
+            <img class="product-image" [src]="product.image" alt="{{ product.title }}" />
+        </div>
+        <div class="product-card">
+            <div class="card-title">
+                {{ product.title }}
+            </div>
+            <div>
+                <h4>{{ product.rating.count }} orders</h4>
+            </div>
+        </div>
+        <div class="card-footer">
+            <h5>Price: {{ product.price }} USD</h5>
+            <a [routerLink]="['/products', product.id]">
+                <button mat-raised-button color="primary">Get details</button>
+            </a>
+        </div>
+    </mat-card>
+</div>
