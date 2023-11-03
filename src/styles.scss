@@ -9,3 +9,8 @@ body {
   width: 80%;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+$sm: "(max-width: 576px)";
+$md: "(max-width: 768px) and (min-width: 576px)";
+$lg: "(max-width: 992px) and (min-width: 768px)";
+$xl: "(max-width: 1200px) and (min-width: 992px)";
+$xxl: "(max-width: 1400px) and (min-width: 1200px)";
