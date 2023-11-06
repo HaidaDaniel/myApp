@@ -1,11 +1,29 @@
-<mat-toolbar color="primary" class="header">
-    <mat-button-toggle [value]="'shop'" routerLink="/shop"
-        routerLinkActive="mat-button-toggle-checked">Shop</mat-button-toggle>
+<!-- <header color="primary" class="row header">
+    <a routerLink="/shop" class="col header-link" routerLinkActive="mat-button-toggle-checked">Shop</a>
 
-    <span class="example-spacer"></span>
+    <span class="col example-spacer"></span>
 
-    <mat-button-toggle [value]="'login'" routerLink="/login"
-        routerLinkActive="mat-button-toggle-checked">Login</mat-button-toggle>
-    <mat-button-toggle [value]="'register'" routerLink="/register"
-        routerLinkActive="mat-button-toggle-checked">Register</mat-button-toggle>
-</mat-toolbar>
+    <a routerLink="/login" class="col header-link" routerLinkActive="mat-button-toggle-checked">Login</a>
+    <a routerLink="/register" class="col header-link" routerLinkActive="mat-button-toggle-checked">Register</a>
+</header> -->
+
+<header
+    class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+    <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
+        <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap">
+            <use xlink:href="#bootstrap"></use>
+        </svg>
+    </a>
+
+    <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+        <li><a routerLink="/shop" class="nav-link px-2 link-secondary">Home</a></li>
+        <li><a href="#" class="nav-link px-2 link-dark">FAQs</a></li>
+        <li><a href="#" class="nav-link px-2 link-dark">About</a></li>
+    </ul>
+
+    <div class="col-md-3 text-end">
+        <button type="button" routerLink="/login" routerLinkActive="mat-button-toggle-checked"
+            class="btn btn-outline-primary me-2">Login</button>
+        <button type="button" class="btn btn-primary">Sign-up</button>
+    </div>
+</header>

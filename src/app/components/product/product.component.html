@@ -1,16 +1,14 @@
-<mat-card class="card-styled">
+<div class="card card-styled">
     <div class="product-image-box">
-        <img class="product-image" [src]="product.image" alt="{{ product.title }}" />
+        <img class="card-img-top product-image" [src]="product.image" alt="{{ product.title }}" />
     </div>
-    <div class="product-card">
-        <div class="card-title">
-            {{ product.title }}
-        </div>
+    <div class="product-card card-body">
+        <h5 class="card-title">{{ product.title }}</h5>
     </div>
     <div class="card-footer">
         <h5>Price: {{ product.price }} USD</h5>
-        <a [routerLink]="['/products', product.id]">
-            <button mat-raised-button color="primary">Get details</button>
+        <a class="link" [routerLink]="['/products', product.id]">
+            <button class="btn btn-primary">Get details</button>
         </a>
     </div>
-</mat-card>
+</div>
