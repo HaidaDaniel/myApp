@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { ActivatedRoute } from '@angular/router'
-import { ProductsService } from '../../services/product.servise'
+import { ProductsService } from '../../services/product.service'
 import { IProduct } from '../../models/product'
 
 @Component({
@@ -17,10 +17,8 @@ export class ProductDetailComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // Извлекаем идентификатор продукта из URL
     const productId = this.route.snapshot.paramMap.get('id')
     if (productId) {
-      // Вызываем getProductById для загрузки данных о продукте
       this.productsService.getProductById(productId).subscribe(
         (data) => {
           this.product = data
