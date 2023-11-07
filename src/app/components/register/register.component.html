@@ -1,0 +1,27 @@
+<app-error-modal [errorMessage]="error"></app-error-modal>
+<div class="card register mx-auto col-lg-6 col-12">
+    <div class="card-header">
+        <h5>Register</h5>
+    </div>
+    <div class="card-body">
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" placeholder="Email" formControlName="email"
+                    required>
+                <div *ngIf="registerForm.get('email')?.hasError('required')" class="text-danger">Email is required</div>
+                <div *ngIf="registerForm.get('email')?.hasError('email')" class="text-danger">Invalid email</div>
+            </div>
+
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" placeholder="Password"
+                    formControlName="password" required>
+                <div *ngIf="registerForm.get('password')?.hasError('required')" class="text-danger">Password is required
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Register</button>
+        </form>
+    </div>
+</div>

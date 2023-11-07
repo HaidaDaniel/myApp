@@ -18,6 +18,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools'
 import { StoreRouterConnectingModule } from '@ngrx/router-store'
 import { AuthEffects } from './reducers/auth/auth.effects'
 import { reducers } from './reducers'
+import { RegisterComponent } from './components/register/register.component'
+import { ErrorModalComponent } from './components/error-modal/error-modal.component'
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { reducers } from './reducers'
     ProductListComponent,
     HeaderComponent,
     LoginComponent,
-    ProductDetailComponent
+    ProductDetailComponent,
+    RegisterComponent,
+    ErrorModalComponent
   ],
   imports: [
     BrowserModule,
