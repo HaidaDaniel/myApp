@@ -1,15 +1,17 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
+import { NgModule } from '@angular/core'
+import { BrowserModule } from '@angular/platform-browser'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { HttpClientModule } from '@angular/common/http'
 
-import { MaterialModule } from './material/material.module';
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { ProductComponent } from './components/product/product.component';
-import { ProductListComponent } from './components/product-list/product-list.component';
-import { HeaderComponent } from './components/header/header.component';
-import { LoginComponent } from './components/login/login.component';
+import { MaterialModule } from './material/material.module'
+import { AppRoutingModule } from './app-routing.module'
+import { AppComponent } from './app.component'
+import { ProductComponent } from './components/product/product.component'
+import { ProductListComponent } from './components/product-list/product-list.component'
+import { HeaderComponent } from './components/header/header.component'
+import { LoginComponent } from './components/login/login.component'
+
+import { ProductDetailComponent } from './components/product-detail/product-detail.component'
 
 @NgModule({
   declarations: [
@@ -18,15 +20,16 @@ import { LoginComponent } from './components/login/login.component';
     ProductListComponent,
     HeaderComponent,
     LoginComponent,
+    ProductDetailComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MaterialModule,
+    MaterialModule
   ],
   providers: [],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent]
 })
 export class AppModule {}

@@ -1,0 +1,36 @@
+<div class="mt-3" data-testid="product-page-body" *ngIf="product">
+    <div class="row">
+        <div class="col-md-6 col-xs-12">
+            <img src="{{ product.image }}" alt="{{ product.title }}" class="col-left"
+                style="max-width: 100%; height: auto">
+        </div>
+        <div class="col-md-6 col-xs-12 mt-3 col-right">
+            <div class="mb-3">
+                <h3>{{ product.title }}</h3>
+            </div>
+            <div class="mb-3 align-items-center">
+                <div class="col-xs-auto">
+                    <!-- <app-rating-stars [rating]="product.rating.rate" [isInput]="false"></app-rating-stars> -->
+                </div>
+                <div class="col-xs-auto ml-auto my-auto">
+                    Price: {{ product.price }} USD
+                </div>
+            </div>
+            <div>
+                <h5>Description:</h5>
+            </div>
+            <div class="mb-3">{{ product.description }}</div>
+            <div class="mb-3 border-top">
+                <!-- <app-comments-block></app-comments-block>
+        </div>
+        <div class="border-top pt-3 mb-3">
+          <ng-container *ngIf="user; else loginMessage">
+            <app-comment-input [productId]="product.id"></app-comment-input> -->
+                <!-- </ng-container> -->
+                <ng-template #loginMessage>
+                    <div>Login please to make a review</div>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+</div>

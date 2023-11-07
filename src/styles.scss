@@ -1,5 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
-@import "~bootstrap/dist/css/bootstrap.min.css";
+@import '~bootstrap/dist/css/bootstrap.min.css';
 
 html,
 body {
@@ -9,10 +9,10 @@ body {
   margin: 0 auto;
   width: 90%;
   background-color: #dbdbdb;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
 }
-$sm: "(max-width: 576px)";
-$md: "(max-width: 768px) and (min-width: 576px)";
-$lg: "(max-width: 992px) and (min-width: 768px)";
-$xl: "(max-width: 1200px) and (min-width: 992px)";
-$xxl: "(max-width: 1400px) and (min-width: 1200px)";
+$sm: '(max-width: 576px)';
+$md: '(max-width: 768px) and (min-width: 576px)';
+$lg: '(max-width: 992px) and (min-width: 768px)';
+$xl: '(max-width: 1200px) and (min-width: 992px)';
+$xxl: '(max-width: 1400px) and (min-width: 1200px)';
