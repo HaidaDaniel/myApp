@@ -65,6 +65,7 @@ export class AuthEffects {
       ofType(AuthActions.refresh),
       mergeMap(() => {
         const refreshToken = this.getRefreshTokenFromCookie()
+        console.log(refreshToken)
         if (refreshToken) {
           return this.authService.refreshAccessToken(refreshToken).pipe(
             map((response) => {

@@ -32,16 +32,16 @@ export class RegisterComponent {
       const email: string = this.registerForm.get('email')?.value
       const password: string = this.registerForm.get('password')?.value
 
-      this.authService.registration(email, password).subscribe(
-        (response: AuthResponse) => {
+      this.authService.registration(email, password).subscribe({
+        next: (response: AuthResponse) => {
           console.log('User registered:', response)
           this.store.dispatch(AuthActions.login({ email, password }))
         },
-        (error) => {
+        error: (error) => {
           console.error('Registration failed:', error)
           this.error = 'Registration failed. Please try again.'
         }
-      )
+      })
     }
   }
 }

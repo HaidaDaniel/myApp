@@ -22,7 +22,9 @@ export class AuthService {
     this.cookieService.set('refreshToken', '')
     return this.api.post<void>('/logout', {})
   }
-
+  getRefreshToken(): string | null {
+    return this.cookieService.get('refreshToken')
+  }
   refreshAccessToken(refreshToken: string): Observable<AuthResponse> {
     return this.api.post<AuthResponse>('/refresh', { refreshToken })
   }
