@@ -32,17 +32,17 @@ export class LoginComponent {
       const email: string = this.loginForm.get('email')?.value
       const password: string = this.loginForm.get('password')?.value
 
-      this.authService.login(email, password).subscribe(
-        (response: AuthResponse) => {
+      this.authService.login(email, password).subscribe({
+        next: (response: AuthResponse) => {
           console.log('User logged in:', response)
           this.store.dispatch(
             AuthActions.login({ email: email, password: password })
           )
         },
-        (error) => {
+        error: (error) => {
           console.error('Authentication failed:', error)
         }
-      )
+      })
     }
   }
 }

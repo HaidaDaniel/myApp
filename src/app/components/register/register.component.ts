@@ -14,7 +14,7 @@ import { AuthResponse } from 'src/app/models/AuthResponse'
 })
 export class RegisterComponent {
   registerForm: FormGroup
-  error: string = '' // Свойство для хранения ошибки
+  error: string = ''
 
   constructor(
     private fb: FormBuilder,
@@ -39,7 +39,7 @@ export class RegisterComponent {
         },
         (error) => {
           console.error('Registration failed:', error)
-          this.error = 'Registration failed. Please try again.' // Устанавливаем ошибку
+          this.error = 'Registration failed. Please try again.'
         }
       )
     }
