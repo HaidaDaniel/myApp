@@ -5,12 +5,14 @@ export interface AuthState {
   email: string | null
   isAuth: boolean
   error: string | null
+  isLoading: boolean
 }
 
 const initialState: AuthState = {
   email: null,
   isAuth: false,
-  error: null
+  error: null,
+  isLoading: false
 }
 
 export const authReducer = createReducer(
@@ -34,13 +36,15 @@ export const authReducer = createReducer(
   })),
   on(AuthActions.refresh, (state) => ({
     ...state,
-    error: null
+    error: null,
+    isLoading: true
   })),
   on(AuthActions.refreshSuccess, (state, { email }) => ({
     ...state,
     email: email,
     isAuth: true,
-    error: null
+    error: null,
+    isLoading: false
   })),
   on(AuthActions.logoutSuccess, (state) => ({
     ...state,

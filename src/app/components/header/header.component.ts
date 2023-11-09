@@ -1,6 +1,7 @@
 import { Component } from '@angular/core'
 import { Router } from '@angular/router'
 import { Store } from '@ngrx/store'
+import { Observable } from 'rxjs'
 import { AppState } from 'src/app/reducers'
 import { AuthService } from '../../services/auth.service'
 import * as AuthActions from 'src/app/reducers/auth/auth.actions'
@@ -10,12 +11,15 @@ import * as AuthActions from 'src/app/reducers/auth/auth.actions'
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
-  isAuthenticated: boolean = false
+  isAuthenticated: boolean | null = null
+  isLoading$: Observable<boolean>
+
   constructor(
     private router: Router,
     private store: Store<AppState>,
     private authService: AuthService
   ) {
+    this.isLoading$ = this.store.select((state) => state.auth.isLoading)
     this.store
       .select((state) => state.auth.isAuth)
       .subscribe((isAuth) => {
