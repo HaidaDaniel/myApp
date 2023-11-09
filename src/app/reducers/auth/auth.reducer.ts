@@ -12,7 +12,7 @@ const initialState: AuthState = {
   email: null,
   isAuth: false,
   error: null,
-  isLoading: false
+  isLoading: true
 }
 
 export const authReducer = createReducer(
