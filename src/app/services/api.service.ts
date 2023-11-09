@@ -1,6 +1,10 @@
 import { Injectable } from '@angular/core'
-import { HttpClient, HttpHeaders } from '@angular/common/http'
-import { Observable } from 'rxjs'
+import {
+  HttpClient,
+  HttpHeaders,
+  HttpErrorResponse
+} from '@angular/common/http'
+import { Observable, throwError } from 'rxjs'
 import { catchError } from 'rxjs/operators'
 
 @Injectable({
@@ -18,9 +22,8 @@ export class ApiService {
     })
   }
 
-  private handleError(error: any): Observable<never> {
-    console.error('API Error:', error)
-    return new Observable<never>()
+  private handleError(error: HttpErrorResponse): Observable<never> {
+    return throwError(() => error)
   }
 
   get<T>(url: string, params?: any): Observable<T> {

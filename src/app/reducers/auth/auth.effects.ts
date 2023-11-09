@@ -49,7 +49,6 @@ export class AuthEffects {
       )
     )
   )
-
   refresh$ = createEffect(() =>
     this.actions$.pipe(
       ofType(AuthActions.refresh),
@@ -60,11 +59,15 @@ export class AuthEffects {
             return AuthActions.refreshSuccess({ email: response.user.email })
           }),
           catchError((error) => {
-            console.log('refresh error: ' + error)
+            console.error('Error during refresh:', error)
             return of(AuthActions.refreshUnSuccess())
           })
         )
-      )
+      ),
+      catchError((error) => {
+        console.error('Outer catchError:', error)
+        return of(AuthActions.refreshUnSuccess())
+      })
     )
   )
   constructor(private actions$: Actions, private authService: AuthService) {}
