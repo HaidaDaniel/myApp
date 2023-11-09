@@ -10,6 +10,7 @@ import { IProduct } from '../../models/product'
 })
 export class ProductDetailComponent implements OnInit {
   product: IProduct = {} as IProduct
+  isLoading: boolean = true
 
   constructor(
     private route: ActivatedRoute,
@@ -22,9 +23,11 @@ export class ProductDetailComponent implements OnInit {
       this.productsService.getProductById(productId).subscribe(
         (data) => {
           this.product = data
+          this.isLoading = false
         },
         (error) => {
           console.error('Failed to load product details', error)
+          this.isLoading = false
         }
       )
     }

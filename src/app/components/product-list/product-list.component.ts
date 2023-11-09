@@ -9,6 +9,7 @@ import { ProductsService } from 'src/app/services/product.service'
 })
 export class ProductListComponent implements OnInit {
   products: IProduct[] = []
+  isLoading: boolean = true
 
   constructor(private productsService: ProductsService) {}
 
@@ -17,8 +18,15 @@ export class ProductListComponent implements OnInit {
   }
 
   loadProducts() {
-    this.productsService.getAll().subscribe((products) => {
-      this.products = products
-    })
+    this.productsService.getAll().subscribe(
+      (products) => {
+        this.products = products
+        this.isLoading = false
+      },
+      (error) => {
+        console.error('Error loading products:', error)
+        this.isLoading = false
+      }
+    )
   }
 }

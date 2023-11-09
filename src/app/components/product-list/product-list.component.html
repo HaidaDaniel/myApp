@@ -4,9 +4,14 @@
     <app-product [product]="product"></app-product>
 </div> -->
 <div class="product-list">
-    <div class="row">
+    <div *ngIf="isLoading" class="d-flex justify-content-center align-items-center">
+        <div class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+    <div *ngIf="!isLoading" class="row">
         <ng-container *ngFor="let product of products">
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 product-item">
                 <app-product [product]="product"></app-product>
             </div>
         </ng-container>
