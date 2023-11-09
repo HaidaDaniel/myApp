@@ -30,6 +30,7 @@ export const refreshSuccess = createAction(
   '[Auth] Refresh Success',
   props<{ email: string }>()
 )
+export const refreshUnSuccess = createAction('[Auth] Refresh UnSuccess')
 export const logout = createAction('[Auth] Logout')
 export const logoutSuccess = createAction('[Auth] Logout Success')
 export const logoutFailure = createAction(

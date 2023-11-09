@@ -6,7 +6,11 @@
         <h5 class="card-title">{{ product.title }}</h5>
     </div>
     <div class="card-footer">
-        <h5>Price: {{ product.price }} USD</h5>
+        <div class="card-price-section">
+            <h6>Price:</h6>
+            <h5>{{ product.price }} USD</h5>
+        </div>
+
         <a class="link" [routerLink]="['/products', product.id]">
             <button class="btn btn-primary">Get details</button>
         </a>

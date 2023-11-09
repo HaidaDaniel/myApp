@@ -46,6 +46,12 @@ export const authReducer = createReducer(
     error: null,
     isLoading: false
   })),
+  on(AuthActions.refreshUnSuccess, (state) => ({
+    ...state,
+    isAuth: false,
+    error: null,
+    isLoading: false
+  })),
   on(AuthActions.logoutSuccess, (state) => ({
     ...state,
     email: null,

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core'
 import { Actions, createEffect, ofType } from '@ngrx/effects'
-import { of, EMPTY } from 'rxjs'
+import { of } from 'rxjs'
 import { catchError, map, mergeMap } from 'rxjs/operators'
 import * as AuthActions from './auth.actions'
 import { AuthService } from '../../services/auth.service'
@@ -53,18 +53,18 @@ export class AuthEffects {
   refresh$ = createEffect(() =>
     this.actions$.pipe(
       ofType(AuthActions.refresh),
-      mergeMap(() => {
-        return this.authService.refreshAccessToken().pipe(
+      mergeMap(() =>
+        this.authService.refreshAccessToken().pipe(
           map((response) => {
             localStorage.setItem('token', response.accessToken)
             return AuthActions.refreshSuccess({ email: response.user.email })
           }),
           catchError((error) => {
             console.log('refresh error: ' + error)
-            return EMPTY
+            return of(AuthActions.refreshUnSuccess())
           })
         )
-      })
+      )
     )
   )
   constructor(private actions$: Actions, private authService: AuthService) {}
