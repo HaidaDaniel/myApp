@@ -7,23 +7,13 @@ import { AuthService } from '../../services/auth.service'
 
 @Injectable()
 export class AuthEffects {
-  getRefreshTokenFromCookie(): string | null {
-    const cookies = document.cookie.split(';')
-    for (const cookie of cookies) {
-      const [name, value] = cookie.split('=')
-      if (name.trim() === 'refreshToken') {
-        return value
-      }
-    }
-    return null
-  }
-
   login$ = createEffect(() =>
     this.actions$.pipe(
       ofType(AuthActions.login),
       mergeMap(({ email, password }) =>
         this.authService.login(email, password).pipe(
           map((response) => {
+            // document.cookie = `refreshToken=${response.refreshToken}; max-age=36000`
             localStorage.setItem('token', response.accessToken)
             return AuthActions.loginSuccess({ email })
           }),
@@ -64,21 +54,16 @@ export class AuthEffects {
     this.actions$.pipe(
       ofType(AuthActions.refresh),
       mergeMap(() => {
-        const refreshToken = this.getRefreshTokenFromCookie()
-        if (refreshToken) {
-          return this.authService.refreshAccessToken(refreshToken).pipe(
-            map((response) => {
-              localStorage.setItem('token', response.accessToken)
-              return AuthActions.refreshSuccess({ email: response.user.email })
-            }),
-            catchError((error) => {
-              console.log('refresh error: ' + error)
-              return EMPTY
-            })
-          )
-        } else {
-          return EMPTY
-        }
+        return this.authService.refreshAccessToken().pipe(
+          map((response) => {
+            localStorage.setItem('token', response.accessToken)
+            return AuthActions.refreshSuccess({ email: response.user.email })
+          }),
+          catchError((error) => {
+            console.log('refresh error: ' + error)
+            return EMPTY
+          })
+        )
       })
     )
   )

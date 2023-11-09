@@ -39,7 +39,7 @@ import { ErrorModalComponent } from './components/error-modal/error-modal.compon
     BrowserAnimationsModule,
     MaterialModule,
     StoreModule.forRoot(reducers),
-    EffectsModule.forRoot([AuthEffects]),
+    EffectsModule.forRoot([AuthEffects, ]),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: !isDevMode(),

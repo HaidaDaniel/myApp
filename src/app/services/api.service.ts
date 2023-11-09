@@ -27,6 +27,7 @@ export class ApiService {
     return this.http
       .get<T>(`${this.API_URL}${url}`, {
         headers: this.createHeaders(),
+        withCredentials: true,
         params
       })
       .pipe(catchError(this.handleError))
@@ -34,7 +35,10 @@ export class ApiService {
 
   post<T>(url: string, body: any): Observable<T> {
     return this.http
-      .post<T>(`${this.API_URL}${url}`, body, { headers: this.createHeaders() })
+      .post<T>(`${this.API_URL}${url}`, body, {
+        headers: this.createHeaders(),
+        withCredentials: true
+      })
       .pipe(catchError(this.handleError))
   }
 }

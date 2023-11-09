@@ -23,7 +23,7 @@ export class AuthService {
     return this.api.post<void>('/logout', {})
   }
 
-  refreshAccessToken(refreshToken: string): Observable<AuthResponse> {
-    return this.api.post<AuthResponse>('/refresh', { refreshToken })
+  refreshAccessToken(): Observable<AuthResponse> {
+    return this.api.get<AuthResponse>('/refresh', {})
   }
 }
