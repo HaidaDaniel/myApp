@@ -38,9 +38,13 @@ export class LoginComponent implements OnDestroy {
       this.store.select('auth').subscribe((authState) => {
         if (authState.error) {
           console.log(authState.error)
-          this.modalService.openModal('Error', authState.error, () => {
-            this.onCloseErrorModal()
-          })
+          this.modalService.openModal(
+            'Error',
+            authState.error.error.message,
+            () => {
+              this.onCloseErrorModal()
+            }
+          )
         } else if (authState.isAuth) {
           this.modalService.openModal(
             'Login Successful',
@@ -56,10 +60,13 @@ export class LoginComponent implements OnDestroy {
   onCloseModal() {
     this.closeTimeout = setTimeout(() => {
       this.router.navigate(['/shop'])
-    }, 1000)
+    }, 500)
   }
 
-  onCloseErrorModal() {}
+  onCloseErrorModal() {
+    const clearErrorAction = AuthActions.clearAuthError()
+    this.store.dispatch(clearErrorAction)
+  }
   ngOnDestroy() {
     if (this.closeTimeout) {
       clearTimeout(this.closeTimeout)

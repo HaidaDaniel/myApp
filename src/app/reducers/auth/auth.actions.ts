@@ -12,6 +12,7 @@ export const loginFailure = createAction(
   '[Auth] Login Failure',
   props<{ error: string }>()
 )
+export const clearAuthError = createAction('[Auth] Clear Error')
 
 export const registration = createAction(
   '[Auth] Registration',

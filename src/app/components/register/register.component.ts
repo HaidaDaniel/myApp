@@ -60,7 +60,7 @@ export class RegisterComponent implements OnDestroy {
   onCloseModal() {
     this.closeTimeout = setTimeout(() => {
       this.router.navigate(['/login'])
-    }, 1000)
+    }, 500)
   }
 
   onCloseErrorModal() {}

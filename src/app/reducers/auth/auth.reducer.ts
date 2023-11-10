@@ -4,7 +4,7 @@ import * as AuthActions from './auth.actions'
 export interface AuthState {
   email: string | null
   isAuth: boolean
-  error: string | null
+  error: any
   isLoading: boolean
 }
 
@@ -28,6 +28,10 @@ export const authReducer = createReducer(
     ...state,
     email,
     isAuth: false,
+    error: null
+  })),
+  on(AuthActions.clearAuthError, (state) => ({
+    ...state,
     error: null
   })),
   on(AuthActions.registrationFailure, (state, { error }) => ({
