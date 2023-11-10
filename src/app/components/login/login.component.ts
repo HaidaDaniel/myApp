@@ -42,7 +42,7 @@ export class LoginComponent implements OnDestroy {
             'Error',
             authState.error.error.message,
             () => {
-              this.onCloseErrorModal()
+              this.modalService.closeModal(), this.onCloseErrorModal()
             }
           )
         } else if (authState.isAuth) {
@@ -50,7 +50,7 @@ export class LoginComponent implements OnDestroy {
             'Login Successful',
             'Return to home page',
             () => {
-              this.onCloseModal()
+              this.modalService.closeModal(), this.onCloseModal()
             }
           )
         }
