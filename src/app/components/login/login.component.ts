@@ -1,19 +1,27 @@
-import { Component } from '@angular/core'
+import { Component, OnDestroy } from '@angular/core'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { Store } from '@ngrx/store'
-import * as AuthActions from 'src/app/reducers/auth/auth.actions'
+import { Router } from '@angular/router'
 
+import * as AuthActions from 'src/app/reducers/auth/auth.actions'
 import { AppState } from 'src/app/reducers'
+import { ModalService } from 'src/app/services/modal.service'
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent {
+export class LoginComponent implements OnDestroy {
   loginForm: FormGroup
-
-  constructor(private fb: FormBuilder, private store: Store<AppState>) {
+  error: string = ''
+  private closeTimeout: any
+  constructor(
+    private router: Router,
+    private fb: FormBuilder,
+    private store: Store<AppState>,
+    private modalService: ModalService
+  ) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]]
@@ -26,6 +34,35 @@ export class LoginComponent {
       const password: string = this.loginForm.get('password')?.value
 
       this.store.dispatch(AuthActions.login({ email, password }))
+
+      this.store.select('auth').subscribe((authState) => {
+        if (authState.error) {
+          console.log(authState.error)
+          this.modalService.openModal('Error', authState.error, () => {
+            this.onCloseErrorModal()
+          })
+        } else if (authState.isAuth) {
+          this.modalService.openModal(
+            'Login Successful',
+            'Return to home page',
+            () => {
+              this.onCloseModal()
+            }
+          )
+        }
+      })
+    }
+  }
+  onCloseModal() {
+    this.closeTimeout = setTimeout(() => {
+      this.router.navigate(['/shop'])
+    }, 1000)
+  }
+
+  onCloseErrorModal() {}
+  ngOnDestroy() {
+    if (this.closeTimeout) {
+      clearTimeout(this.closeTimeout)
     }
   }
 }

@@ -1,12 +1,12 @@
 import { Component, OnDestroy } from '@angular/core'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
-import { AuthService } from 'src/app/services/auth.service'
 import { Store } from '@ngrx/store'
+import { Router } from '@angular/router'
 
 import { AppState } from 'src/app/reducers'
 import { AuthResponse } from 'src/app/models/AuthResponse'
 import { ModalService } from 'src/app/services/modal.service'
-import { Router } from '@angular/router'
+import { AuthService } from 'src/app/services/auth.service'
 
 @Component({
   selector: 'app-register',
