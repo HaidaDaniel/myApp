@@ -1,19 +1,25 @@
 import { Injectable } from '@angular/core'
-import { Subject } from 'rxjs'
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal'
+import { ModalComponent } from '../components/modal/modal.component'
 
 @Injectable({
   providedIn: 'root'
 })
 export class ModalService {
-  private errorModalSubject = new Subject<string>()
+  bsModalRef!: BsModalRef<any>
 
-  errorModal$ = this.errorModalSubject.asObservable()
-
-  openErrorModal(message: string) {
-    this.errorModalSubject.next(message)
+  constructor(private modalService: BsModalService) {
+    this.bsModalRef = {} as BsModalRef<any>
   }
 
-  closeErrorModal() {
-    this.errorModalSubject.next('')
+  openModal(title: string, body: string): void {
+    const initialState = { title, body }
+    this.bsModalRef = this.modalService.show(ModalComponent, { initialState })
+  }
+
+  closeModal(): void {
+    if (this.bsModalRef) {
+      this.bsModalRef.hide()
+    }
   }
 }

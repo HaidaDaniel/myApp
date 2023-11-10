@@ -16,3 +16,9 @@ $md: '(max-width: 768px) and (min-width: 576px)';
 $lg: '(max-width: 992px) and (min-width: 768px)';
 $xl: '(max-width: 1200px) and (min-width: 992px)';
 $xxl: '(max-width: 1400px) and (min-width: 1200px)';
+
+/* Importing Bootstrap SCSS file. */
+@import "./node_modules/bootstrap/scss/bootstrap";
+
+/* Importing Datepicker SCSS file. */
+@import "node_modules/ngx-bootstrap/datepicker/bs-datepicker";

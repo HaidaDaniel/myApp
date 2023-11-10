@@ -2,7 +2,7 @@ import { NgModule, isDevMode } from '@angular/core'
 import { BrowserModule } from '@angular/platform-browser'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { HttpClientModule } from '@angular/common/http'
-
+import { ModalModule } from 'ngx-bootstrap/modal'
 import { MaterialModule } from './material/material.module'
 import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
@@ -19,7 +19,8 @@ import { StoreRouterConnectingModule } from '@ngrx/router-store'
 import { AuthEffects } from './reducers/auth/auth.effects'
 import { reducers } from './reducers'
 import { RegisterComponent } from './components/register/register.component'
-import { ErrorModalComponent } from './components/error-modal/error-modal.component'
+
+import { ModalComponent } from './components/modal/modal.component'
 
 @NgModule({
   declarations: [
@@ -30,7 +31,7 @@ import { ErrorModalComponent } from './components/error-modal/error-modal.compon
     LoginComponent,
     ProductDetailComponent,
     RegisterComponent,
-    ErrorModalComponent
+    ModalComponent
   ],
   imports: [
     BrowserModule,
@@ -38,6 +39,7 @@ import { ErrorModalComponent } from './components/error-modal/error-modal.compon
     HttpClientModule,
     BrowserAnimationsModule,
     MaterialModule,
+    ModalModule.forRoot(),
     StoreModule.forRoot(reducers),
     EffectsModule.forRoot([AuthEffects]),
     StoreDevtoolsModule.instrument({
