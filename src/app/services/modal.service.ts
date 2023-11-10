@@ -8,12 +8,10 @@ import { ModalComponent } from '../components/modal/modal.component'
 export class ModalService {
   bsModalRef!: BsModalRef<any>
 
-  constructor(private modalService: BsModalService) {
-    this.bsModalRef = {} as BsModalRef<any>
-  }
+  constructor(private modalService: BsModalService) {}
 
-  openModal(title: string, body: string): void {
-    const initialState = { title, body }
+  openModal(title: string, body: string, onCloseCallback: () => void): void {
+    const initialState = { title, body, onCloseCallback }
     this.bsModalRef = this.modalService.show(ModalComponent, { initialState })
   }
 

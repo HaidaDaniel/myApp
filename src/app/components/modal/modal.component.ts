@@ -4,17 +4,17 @@ import { BsModalRef } from 'ngx-bootstrap/modal'
 @Component({
   selector: 'app-modal',
   templateUrl: './modal.component.html',
-  styleUrls: ['./modal.component.css']
+  styleUrls: ['./modal.component.scss']
 })
 export class ModalComponent {
   @Input() title: string = ''
   @Input() body: string = ''
-  @Output() closeModal: EventEmitter<any> = new EventEmitter()
+  @Input() onCloseCallback: () => void = () => {}
 
   constructor(public bsModalRef: BsModalRef) {}
 
   onClose() {
-    this.closeModal.emit()
+    this.onCloseCallback()
     this.bsModalRef.hide()
   }
 }

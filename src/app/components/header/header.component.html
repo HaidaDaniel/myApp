@@ -12,8 +12,9 @@
     </ul>
     <div class="col-md-3 text-end" *ngIf="!(isLoading$ | async)">
         <button *ngIf="!isAuthenticated" type="button" routerLink="/login" routerLinkActive="mat-button-toggle-checked"
-            class="btn btn-outline-primary me-2">Login</button>
-        <button *ngIf="!isAuthenticated" type="button" routerLink="/register" class="btn btn-primary">Sign-up</button>
+            class="btn btn-primary me-2">Login</button>
+        <button *ngIf="!isAuthenticated" type="button" routerLink="/register"
+            routerLinkActive="mat-button-toggle-checked" class="btn btn-primary">Sign-up</button>
         <button *ngIf="isAuthenticated" (click)="logout()" class="btn btn-danger">Logout</button>
     </div>
 </header>

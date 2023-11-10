@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { HttpClientModule } from '@angular/common/http'
 import { ModalModule } from 'ngx-bootstrap/modal'
-import { MaterialModule } from './material/material.module'
 import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
 import { ProductComponent } from './components/product/product.component'
@@ -19,7 +18,7 @@ import { StoreRouterConnectingModule } from '@ngrx/router-store'
 import { AuthEffects } from './reducers/auth/auth.effects'
 import { reducers } from './reducers'
 import { RegisterComponent } from './components/register/register.component'
-
+import { ReactiveFormsModule } from '@angular/forms'
 import { ModalComponent } from './components/modal/modal.component'
 
 @NgModule({
@@ -38,7 +37,7 @@ import { ModalComponent } from './components/modal/modal.component'
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MaterialModule,
+    ReactiveFormsModule,
     ModalModule.forRoot(),
     StoreModule.forRoot(reducers),
     EffectsModule.forRoot([AuthEffects]),

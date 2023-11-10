@@ -1,23 +1,26 @@
-import { Component } from '@angular/core'
+import { Component, OnDestroy } from '@angular/core'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { AuthService } from 'src/app/services/auth.service'
 import { Store } from '@ngrx/store'
 
-import * as AuthActions from 'src/app/reducers/auth/auth.actions'
 import { AppState } from 'src/app/reducers'
 import { AuthResponse } from 'src/app/models/AuthResponse'
 import { ModalService } from 'src/app/services/modal.service'
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
-export class RegisterComponent {
+export class RegisterComponent implements OnDestroy {
   registerForm: FormGroup
   error: string = ''
 
+  private closeTimeout: any
+
   constructor(
+    private router: Router,
     private fb: FormBuilder,
     private authService: AuthService,
     private store: Store<AppState>,
@@ -36,14 +39,34 @@ export class RegisterComponent {
 
       this.authService.registration(email, password).subscribe({
         next: (response: AuthResponse) => {
-          console.log('User registered:', response)
-          this.store.dispatch(AuthActions.login({ email, password }))
+          this.modalService.openModal(
+            'send activation link to:',
+            response.user.email,
+            () => {
+              this.onCloseModal()
+            }
+          )
         },
         error: (error) => {
           console.log(error)
-          this.modalService.openModal('Error', error.error.message)
+          this.modalService.openModal('Error', error.error.message, () => {
+            this.onCloseErrorModal()
+          })
         }
       })
+    }
+  }
+
+  onCloseModal() {
+    this.closeTimeout = setTimeout(() => {
+      this.router.navigate(['/login'])
+    }, 1000)
+  }
+
+  onCloseErrorModal() {}
+  ngOnDestroy() {
+    if (this.closeTimeout) {
+      clearTimeout(this.closeTimeout)
     }
   }
 }
