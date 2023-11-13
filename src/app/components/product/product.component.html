@@ -1,27 +1,33 @@
 <div class="card card-styled">
-    <div class="product-image-box">
-        <img class="card-img-top product-image" [src]="product.image" alt="{{ product.title }}" />
+  <div class="product-image-box">
+    <img
+      class="card-img-top product-image"
+      [src]="product.image"
+      alt="{{ product.title }}"
+    />
+  </div>
+  <div class="product-card card-body">
+    <h6 class="card-title">{{ product.title }}</h6>
+    <div class="rating-box">
+      <h6 class="rating-text">
+        Rating:
+        <rating
+          class="rating"
+          [(ngModel)]="product.rating.rate"
+          [max]="5"
+          [readonly]="true"
+          [titles]="['one', 'two', 'three', 'four', 'five']"
+        ></rating>
+      </h6>
+      <div class="card-price-section">
+        <h6 class="price-text">Price:</h6>
+        <h6 class="price-text">{{ product.price }} USD</h6>
+      </div>
     </div>
-    <div class="product-card card-body">
-        <h6 class="card-title">{{ product.title }}</h6>
-        <div class="rating-box">
-            <h6 class="rating-text">Rating: <rating class="rating" [(ngModel)]="product.rating.rate" [max]="5"
-                    [readonly]="true" [titles]="['one', 'two', 'three', 'four', 'five']"></rating>
-            </h6>
-            <div class="card-price-section">
-                <h6 class="price-text">Price:</h6>
-                <h6 class="price-text">{{ product.price }} USD</h6>
-            </div>
-        </div>
-
-
-    </div>
-    <div class="card-footer">
-        <a class="link" [routerLink]="['/products', product.id]">
-            <button class="btn btn-primary">Get details</button>
-        </a>
-
-
-
-    </div>
+  </div>
+  <div class="card-footer">
+    <a class="link" [routerLink]="['/products', product.id]">
+      <button class="btn btn-primary">Get details</button>
+    </a>
+  </div>
 </div>
