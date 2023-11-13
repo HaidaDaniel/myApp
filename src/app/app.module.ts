@@ -9,7 +9,7 @@ import { ProductComponent } from './components/product/product.component'
 import { ProductListComponent } from './components/product-list/product-list.component'
 import { HeaderComponent } from './components/header/header.component'
 import { LoginComponent } from './components/login/login.component'
-
+import { FormsModule } from '@angular/forms'
 import { ProductDetailComponent } from './components/product-detail/product-detail.component'
 import { StoreModule } from '@ngrx/store'
 import { EffectsModule } from '@ngrx/effects'
@@ -20,6 +20,8 @@ import { reducers } from './reducers'
 import { RegisterComponent } from './components/register/register.component'
 import { ReactiveFormsModule } from '@angular/forms'
 import { ModalComponent } from './components/modal/modal.component'
+import { RatingModule } from 'ngx-bootstrap/rating'
+import { CommentItemComponent } from './components/comment-item/comment-item.component'
 
 @NgModule({
   declarations: [
@@ -30,7 +32,8 @@ import { ModalComponent } from './components/modal/modal.component'
     LoginComponent,
     ProductDetailComponent,
     RegisterComponent,
-    ModalComponent
+    ModalComponent,
+    CommentItemComponent
   ],
   imports: [
     BrowserModule,
@@ -38,6 +41,8 @@ import { ModalComponent } from './components/modal/modal.component'
     HttpClientModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
+    FormsModule,
+    RatingModule.forRoot(),
     ModalModule.forRoot(),
     StoreModule.forRoot(reducers),
     EffectsModule.forRoot([AuthEffects]),
