@@ -22,6 +22,7 @@ import { ReactiveFormsModule } from '@angular/forms'
 import { ModalComponent } from './components/modal/modal.component'
 import { RatingModule } from 'ngx-bootstrap/rating'
 import { CommentItemComponent } from './components/comment-item/comment-item.component'
+import { CommentsListComponent } from './components/comments-list/comments-list.component'
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { CommentItemComponent } from './components/comment-item/comment-item.com
     ProductDetailComponent,
     RegisterComponent,
     ModalComponent,
-    CommentItemComponent
+    CommentItemComponent,
+    CommentsListComponent
   ],
   imports: [
     BrowserModule,
