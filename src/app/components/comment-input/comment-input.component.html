@@ -1,0 +1,66 @@
+<ng-container *ngIf="(auth$ | async) === true">
+  <form [formGroup]="commentForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="text">Comment:</label>
+      <textarea
+        id="text"
+        formControlName="text"
+        class="form-control"
+      ></textarea>
+      <div
+        *ngIf="
+          commentForm.get('text')!.touched && commentForm.get('text')!.invalid
+        "
+        class="error-message"
+      >
+        <span *ngIf="commentForm.get('text')!.errors?.['required']"
+          >Comment is required.</span
+        >
+        <span *ngIf="commentForm.get('text')!.errors?.['maxlength']"
+          >Comment must be 250 characters or less.</span
+        >
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="rating">Rating:</label>
+      <input
+        type="number"
+        id="rating"
+        formControlName="rating"
+        class="form-control"
+        min="0"
+        max="5"
+      />
+      <div
+        *ngIf="
+          commentForm.get('rating')!.touched &&
+          commentForm.get('rating')!.invalid
+        "
+        class="error-message"
+      >
+        <span *ngIf="commentForm.get('rating')!.errors?.['required']"
+          >Rating is required.</span
+        >
+        <span
+          *ngIf="commentForm.get('rating')!.errors?.['min'] || commentForm.get('rating')!.errors?.['max']"
+        >
+          Rating must be between 0 and 5.
+        </span>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</ng-container>
+<ng-container *ngIf="(auth$ | async) === false">
+  <div
+    style="
+      display: flex;
+      flex-wrap: wrap;
+      align-content: center;
+      justify-content: center;
+      margin-top: 1rem;
+    "
+  >
+    <h5>Login to make review</h5>
+  </div>
+</ng-container>

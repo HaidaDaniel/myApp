@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core'
 import { Observable } from 'rxjs'
-import { IComment } from '../models/IComment'
+import { IComment, ICommentSend } from '../models/IComment'
 import { ApiService } from './api.service'
 
 @Injectable({
@@ -16,8 +16,11 @@ export class CommentService {
     return this.apiService.get<IComment[]>(url)
   }
 
-  addComment(productId: number, comment: IComment): Observable<IComment> {
+  addComment(
+    productId: number,
+    comment: ICommentSend
+  ): Observable<ICommentSend> {
     const url = `/products/${productId}${this.commentsUrl}`
-    return this.apiService.post<IComment>(url, comment)
+    return this.apiService.post<ICommentSend>(url, comment)
   }
 }

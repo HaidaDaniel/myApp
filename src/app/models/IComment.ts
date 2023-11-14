@@ -7,3 +7,7 @@ export interface IComment {
   createdAt: string
   __v: number
 }
+export interface ICommentSend {
+  text: string
+  rating: number
+}
