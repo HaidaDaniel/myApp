@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core'
 import { HttpClient, HttpErrorResponse } from '@angular/common/http'
 import { catchError, delay, Observable, retry, tap, throwError } from 'rxjs'
-import { IProduct } from '../models/product'
+import { IProduct } from '../models/IProduct'
 import { ErrorService } from './error.service'
 
 @Injectable({

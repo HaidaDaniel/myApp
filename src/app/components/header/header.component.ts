@@ -5,6 +5,9 @@ import { Observable } from 'rxjs'
 import { AppState } from 'src/app/reducers'
 import { AuthService } from '../../services/auth.service'
 import * as AuthActions from 'src/app/reducers/auth/auth.actions'
+import * as CartActions from 'src/app/reducers/cart/cart.actions'
+import { CartService } from 'src/app/services/cart.service'
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -17,6 +20,7 @@ export class HeaderComponent {
   constructor(
     private router: Router,
     private store: Store<AppState>,
+    private cartService: CartService,
     private authService: AuthService
   ) {
     this.isLoading$ = this.store.select((state) => state.auth.isLoading)
@@ -30,6 +34,7 @@ export class HeaderComponent {
   navigateToPage(page: string) {
     this.router.navigate([`/${page}`])
   }
+
   logout() {
     this.authService.logout().subscribe({
       next: () => {
@@ -40,5 +45,9 @@ export class HeaderComponent {
         console.error('Logout failed:', error)
       }
     })
+  }
+
+  openCartModal() {
+    this.cartService.openCart()
   }
 }

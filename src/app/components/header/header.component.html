@@ -33,5 +33,12 @@
     <button *ngIf="isAuthenticated" (click)="logout()" class="btn btn-danger">
       Logout
     </button>
+    <button
+      *ngIf="isAuthenticated"
+      (click)="openCartModal()"
+      class="btn btn-info"
+    >
+      Open Cart
+    </button>
   </div>
 </header>

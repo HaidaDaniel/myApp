@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core'
-
-import { IProduct } from 'src/app/models/product'
-
+import { IProduct } from 'src/app/models/IProduct'
+import { Store } from '@ngrx/store'
+import * as CartActions from 'src/app/reducers/cart/cart.actions'
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
@@ -10,5 +10,10 @@ import { IProduct } from 'src/app/models/product'
 export class ProductComponent {
   @Input() product: IProduct = {} as IProduct
 
-  constructor() {}
+  constructor(private store: Store) {}
+
+  addToCart(product: IProduct) {
+    console.log(product, 1)
+    this.store.dispatch(CartActions.addToCart({ product, quantity: 1 }))
+  }
 }

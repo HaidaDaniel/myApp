@@ -24,6 +24,7 @@ import { RatingModule } from 'ngx-bootstrap/rating'
 import { CommentItemComponent } from './components/comment-item/comment-item.component'
 import { CommentsListComponent } from './components/comments-list/comments-list.component'
 import { CommentInputComponent } from './components/comment-input/comment-input.component'
+import { CartModalComponent } from './components/cart-modal/cart-modal.component'
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { CommentInputComponent } from './components/comment-input/comment-input.
     ModalComponent,
     CommentItemComponent,
     CommentsListComponent,
-    CommentInputComponent
+    CommentInputComponent,
+    CartModalComponent
   ],
   imports: [
     BrowserModule,

@@ -29,5 +29,8 @@
     <a class="link" [routerLink]="['/products', product.id]">
       <button class="btn btn-primary">Get details</button>
     </a>
+    <button class="btn btn-success" (click)="addToCart(product)">
+      Add to Cart
+    </button>
   </div>
 </div>
