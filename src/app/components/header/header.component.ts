@@ -1,6 +1,7 @@
 import { Component } from '@angular/core'
 import { Router } from '@angular/router'
 import { Store } from '@ngrx/store'
+import { take } from 'rxjs/operators'
 import { Observable } from 'rxjs'
 import { AppState } from 'src/app/reducers'
 import { AuthService } from '../../services/auth.service'
@@ -28,28 +29,24 @@ export class HeaderComponent {
     this.cartLength$ = this.store.select((state) => state.cart.items.length)
     this.isAuthenticated$ = this.store.select((state) => state.auth.isAuth)
   }
-  // ngOnInit(): void {
-  //   this.store
-  //     .select((state) => state.auth.isAuth)
-  //     .subscribe((isAuth) => {
-  //       this.isAuthenticated = isAuth
-  //     })
-  // }
 
   navigateToPage(page: string) {
     this.router.navigate([`/${page}`])
   }
 
   logout() {
-    this.authService.logout().subscribe({
-      next: () => {
-        console.log('User logged out successfully')
-        this.store.dispatch(AuthActions.logout())
-      },
-      error: (error) => {
-        console.error('Logout failed:', error)
-      }
-    })
+    this.authService
+      .logout()
+      .pipe(take(1))
+      .subscribe({
+        next: () => {
+          console.log('User logged out successfully')
+          this.store.dispatch(AuthActions.logout())
+        },
+        error: (error) => {
+          console.error('Logout failed:', error)
+        }
+      })
   }
 
   openCartModal() {

@@ -2,6 +2,7 @@ import { Component, OnDestroy } from '@angular/core'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { Store } from '@ngrx/store'
 import { Router } from '@angular/router'
+import { take } from 'rxjs/operators'
 
 import * as AuthActions from 'src/app/reducers/auth/auth.actions'
 import { AppState } from 'src/app/reducers'
@@ -35,26 +36,29 @@ export class LoginComponent implements OnDestroy {
 
       this.store.dispatch(AuthActions.login({ email, password }))
 
-      this.store.select('auth').subscribe((authState) => {
-        if (authState.error) {
-          console.log(authState.error)
-          this.modalService.openModal(
-            'Error',
-            authState.error.error.message,
-            () => {
-              this.modalService.closeModal(), this.onCloseErrorModal()
-            }
-          )
-        } else if (authState.isAuth) {
-          this.modalService.openModal(
-            'Login Successful',
-            'Return to home page',
-            () => {
-              this.modalService.closeModal(), this.onCloseModal()
-            }
-          )
-        }
-      })
+      this.store
+        .select('auth')
+        .pipe(take(1))
+        .subscribe((authState) => {
+          if (authState.error) {
+            console.log(authState.error)
+            this.modalService.openModal(
+              'Error',
+              authState.error.error.message,
+              () => {
+                this.modalService.closeModal(), this.onCloseErrorModal()
+              }
+            )
+          } else if (authState.isAuth) {
+            this.modalService.openModal(
+              'Login Successful',
+              'Return to home page',
+              () => {
+                this.modalService.closeModal(), this.onCloseModal()
+              }
+            )
+          }
+        })
     }
   }
   onCloseModal() {

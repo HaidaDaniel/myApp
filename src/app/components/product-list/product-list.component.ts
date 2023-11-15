@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'
+import { Component } from '@angular/core'
 import { ProductsService } from 'src/app/services/product.service'
 import { Observable } from 'rxjs'
 import { IProduct } from 'src/app/models/IProduct'
