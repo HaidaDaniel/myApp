@@ -2,7 +2,8 @@ import { Component, OnDestroy } from '@angular/core'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { Store } from '@ngrx/store'
 import { Router } from '@angular/router'
-
+import { Subject } from 'rxjs'
+import { takeUntil } from 'rxjs/operators'
 import { AppState } from 'src/app/reducers'
 import { AuthResponse } from 'src/app/models/AuthResponse'
 import { ModalService } from 'src/app/services/modal.service'
@@ -18,6 +19,7 @@ export class RegisterComponent implements OnDestroy {
   error: string = ''
 
   private closeTimeout: any
+  private destroy$ = new Subject<void>()
 
   constructor(
     private router: Router,
@@ -37,23 +39,26 @@ export class RegisterComponent implements OnDestroy {
       const email: string = this.registerForm.get('email')?.value
       const password: string = this.registerForm.get('password')?.value
 
-      this.authService.registration(email, password).subscribe({
-        next: (response: AuthResponse) => {
-          this.modalService.openModal(
-            'send activation link to:',
-            response.user.email,
-            () => {
-              this.onCloseModal()
-            }
-          )
-        },
-        error: (error) => {
-          console.log(error)
-          this.modalService.openModal('Error', error.error.message, () => {
-            this.onCloseErrorModal()
-          })
-        }
-      })
+      this.authService
+        .registration(email, password)
+        .pipe(takeUntil(this.destroy$))
+        .subscribe({
+          next: (response: AuthResponse) => {
+            this.modalService.openModal(
+              'send activation link to:',
+              response.user.email,
+              () => {
+                this.onCloseModal()
+              }
+            )
+          },
+          error: (error) => {
+            console.log(error)
+            this.modalService.openModal('Error', error.error.message, () => {
+              this.onCloseErrorModal()
+            })
+          }
+        })
     }
   }
 

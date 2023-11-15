@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core'
 import { ActivatedRoute } from '@angular/router'
 import { ProductsService } from '../../services/product.service'
 import { IProduct } from '../../models/IProduct'
+import { Subscription } from 'rxjs'
 
 @Component({
   selector: 'app-product-detail',
@@ -11,6 +12,7 @@ import { IProduct } from '../../models/IProduct'
 export class ProductDetailComponent implements OnInit {
   product: IProduct = {} as IProduct
   isLoading: boolean = true
+  private productSubscription: Subscription | undefined
 
   constructor(
     private route: ActivatedRoute,
@@ -20,16 +22,24 @@ export class ProductDetailComponent implements OnInit {
   ngOnInit(): void {
     const productId = this.route.snapshot.paramMap.get('id')
     if (productId) {
-      this.productsService.getProductById(productId).subscribe(
-        (data) => {
-          this.product = data
-          this.isLoading = false
-        },
-        (error) => {
-          console.error('Failed to load product details', error)
-          this.isLoading = false
-        }
-      )
+      this.productSubscription = this.productsService
+        .getProductById(productId)
+        .subscribe({
+          next: (data) => {
+            this.product = data
+            this.isLoading = false
+          },
+          error: (error) => {
+            console.error('Failed to load product details', error)
+            this.isLoading = false
+          }
+        })
+    }
+  }
+
+  ngOnDestroy() {
+    if (this.productSubscription) {
+      this.productSubscription.unsubscribe()
     }
   }
 }

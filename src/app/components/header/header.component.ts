@@ -14,8 +14,9 @@ import { CartService } from 'src/app/services/cart.service'
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
-  isAuthenticated: boolean | null = null
+  isAuthenticated$: Observable<boolean>
   isLoading$: Observable<boolean>
+  cartLength$: Observable<number>
 
   constructor(
     private router: Router,
@@ -24,12 +25,16 @@ export class HeaderComponent {
     private authService: AuthService
   ) {
     this.isLoading$ = this.store.select((state) => state.auth.isLoading)
-    this.store
-      .select((state) => state.auth.isAuth)
-      .subscribe((isAuth) => {
-        this.isAuthenticated = isAuth
-      })
+    this.cartLength$ = this.store.select((state) => state.cart.items.length)
+    this.isAuthenticated$ = this.store.select((state) => state.auth.isAuth)
   }
+  // ngOnInit(): void {
+  //   this.store
+  //     .select((state) => state.auth.isAuth)
+  //     .subscribe((isAuth) => {
+  //       this.isAuthenticated = isAuth
+  //     })
+  // }
 
   navigateToPage(page: string) {
     this.router.navigate([`/${page}`])

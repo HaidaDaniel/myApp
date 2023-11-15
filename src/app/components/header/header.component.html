@@ -13,7 +13,7 @@
   </ul>
   <div class="col-md-3 text-end" *ngIf="!(isLoading$ | async)">
     <button
-      *ngIf="!isAuthenticated"
+      *ngIf="!(isAuthenticated$ | async)"
       type="button"
       routerLink="/login"
       routerLinkActive="mat-button-toggle-checked"
@@ -22,7 +22,7 @@
       Login
     </button>
     <button
-      *ngIf="!isAuthenticated"
+      *ngIf="!(isAuthenticated$ | async)"
       type="button"
       routerLink="/register"
       routerLinkActive="mat-button-toggle-checked"
@@ -30,15 +30,19 @@
     >
       Sign-up
     </button>
-    <button *ngIf="isAuthenticated" (click)="logout()" class="btn btn-danger">
+    <button
+      *ngIf="isAuthenticated$ | async"
+      (click)="logout()"
+      class="btn btn-danger"
+    >
       Logout
     </button>
     <button
-      *ngIf="isAuthenticated"
       (click)="openCartModal()"
-      class="btn btn-info"
+      class="btn btn-info cart-button"
+      [disabled]="(cartLength$ | async) === 0"
     >
-      Open Cart
+      Cart
     </button>
   </div>
 </header>
