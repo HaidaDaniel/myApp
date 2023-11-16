@@ -1,11 +1,21 @@
 <div class="cart-modal">
+  <button class="close-button" (click)="closeModal()">Close</button>
   <h2>Shopping Cart</h2>
   <ul>
     <li *ngFor="let item of cartItems$ | async">
-      {{ item.product.title }} - Quantity: {{ item.quantity }}
-      <button (click)="removeFromCart(item.product.id)">Remove</button>
+      <div class="cart-item">
+        <span class="cart-item-title">{{ item.product.title }}</span>
+        <div>
+          <span> Qty: {{ item.quantity }}</span>
+          <button
+            class="remove-button"
+            (click)="removeFromCart(item.product.id)"
+          >
+            Remove
+          </button>
+        </div>
+      </div>
     </li>
   </ul>
-  <button (click)="clearCart()">Clear Cart</button>
-  <button (click)="closeModal()">Close</button>
+  <button class="clear-button" (click)="clearCart()">Clear Cart</button>
 </div>

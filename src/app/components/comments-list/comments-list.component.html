@@ -1,8 +1,16 @@
 <h5>Reviews:</h5>
-<div *ngIf="comments.length > 0">
+<div *ngIf="comments$ | async as comments">
   <app-comment-item
     *ngFor="let comment of comments"
     [comment]="comment"
   ></app-comment-item>
 </div>
-<div *ngIf="comments.length === 0">No comments available.</div>
+<ng-template
+  *ngIf="!(comments$ | async)"
+  class="d-flex justify-content-center align-items-center"
+>
+  <div class="spinner-border" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+</ng-template>
+<div *ngIf="(comments$ | async)?.length === 0">No Reviews available.</div>

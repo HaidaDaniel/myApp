@@ -7,7 +7,7 @@ import { ApiService } from './api.service'
   providedIn: 'root'
 })
 export class CommentService {
-  private commentsUrl = '/comments' //
+  private commentsUrl = '/comments'
 
   constructor(private apiService: ApiService) {}
 

@@ -38,7 +38,7 @@ export class LoginComponent implements OnDestroy {
 
       this.store
         .select('auth')
-        .pipe(take(1))
+        .pipe(take(2))
         .subscribe((authState) => {
           if (authState.error) {
             console.log(authState.error)

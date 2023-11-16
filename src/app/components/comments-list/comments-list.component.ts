@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core'
-import { ActivatedRoute, Router } from '@angular/router'
+import { Observable } from 'rxjs'
 
 import { IComment } from '../../models/IComment'
 import { CommentService } from '../../services/comment.service'
@@ -12,7 +12,7 @@ import { CommentService } from '../../services/comment.service'
 export class CommentsListComponent implements OnInit {
   @Input() productId: number = 0
 
-  comments: IComment[] = []
+  comments$!: Observable<IComment[]>
 
   constructor(private commentService: CommentService) {}
 
@@ -21,12 +21,8 @@ export class CommentsListComponent implements OnInit {
   }
 
   loadComments() {
-    if (this.productId) {
-      this.commentService
-        .getCommentsByProduct(this.productId)
-        .subscribe((comments: IComment[]) => {
-          this.comments = comments
-        })
+    if (this.productId !== 0) {
+      this.comments$ = this.commentService.getCommentsByProduct(this.productId)
     }
   }
 }
