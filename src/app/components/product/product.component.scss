@@ -57,11 +57,11 @@ $margin: 0.4rem;
   margin: $margin;
   height: 48.5rem;
   @media #{$xl} {
-    height: 43rem;
+    height: 44rem;
   }
 
   @media #{$lg} {
-    height: 43rem;
+    height: 44rem;
   }
 
   @media #{$md} {
@@ -94,8 +94,8 @@ $margin: 0.4rem;
 }
 .rating-price-box {
   display: flex;
-  width: 100%;
+  width: 94%;
   flex-wrap: wrap;
   align-content: center;
-  justify-content: space-evenly;
+  justify-content: space-between;
 }

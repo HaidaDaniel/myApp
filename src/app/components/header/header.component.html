@@ -15,7 +15,7 @@
     <button
       *ngIf="!(isAuthenticated$ | async)"
       type="button"
-      routerLink="/login"
+      (click)="navigateToPage('login')"
       routerLinkActive="mat-button-toggle-checked"
       class="btn btn-primary me-2"
     >

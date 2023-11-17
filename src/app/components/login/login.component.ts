@@ -1,12 +1,14 @@
-import { Component, OnDestroy } from '@angular/core'
+import { Component, OnDestroy, OnInit } from '@angular/core'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { Store } from '@ngrx/store'
-import { Router } from '@angular/router'
-import { take } from 'rxjs/operators'
+import { Router, NavigationEnd } from '@angular/router'
+import { take, filter, pairwise } from 'rxjs/operators'
+import { Location } from '@angular/common'
 
 import * as AuthActions from 'src/app/reducers/auth/auth.actions'
 import { AppState } from 'src/app/reducers'
 import { ModalService } from 'src/app/services/modal.service'
+import { PreviousPageService } from 'src/app/services/previous-page.service'
 
 @Component({
   selector: 'app-login',
@@ -18,10 +20,12 @@ export class LoginComponent implements OnDestroy {
   error: string = ''
   private closeTimeout: any
   constructor(
+    private location: Location,
     private router: Router,
     private fb: FormBuilder,
     private store: Store<AppState>,
-    private modalService: ModalService
+    private modalService: ModalService,
+    private previousPageService: PreviousPageService
   ) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -63,7 +67,13 @@ export class LoginComponent implements OnDestroy {
   }
   onCloseModal() {
     this.closeTimeout = setTimeout(() => {
-      this.router.navigate(['/shop'])
+      const previousUrl = this.previousPageService.getPreviousUrl()
+
+      if (previousUrl && !previousUrl.includes('/register')) {
+        this.router.navigate([previousUrl])
+      } else {
+        this.router.navigate(['/shop'])
+      }
     }, 500)
   }
 

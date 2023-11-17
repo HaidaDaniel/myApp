@@ -1,21 +1,29 @@
-<div class="cart-modal">
-  <button class="close-button" (click)="closeModal()">Close</button>
-  <h2>Shopping Cart</h2>
-  <ul>
-    <li *ngFor="let item of cartItems$ | async">
-      <div class="cart-item">
-        <span class="cart-item-title">{{ item.product.title }}</span>
-        <div>
-          <span> Qty: {{ item.quantity }}</span>
-          <button
-            class="remove-button"
-            (click)="removeFromCart(item.product.id)"
-          >
-            Remove
-          </button>
-        </div>
-      </div>
-    </li>
-  </ul>
-  <button class="clear-button" (click)="clearCart()">Clear Cart</button>
-</div>
+<ng-container>
+  <div class="cart-modal">
+    <div class="modal-header">
+      <button class="close-button" (click)="closeModal()">Close</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-title">Shopping Cart:</div>
+      <ul>
+        <li *ngFor="let item of cartItems$ | async">
+          <div class="cart-item">
+            <span class="cart-item-title">{{ item.product.title }}</span>
+            <div>
+              <span> Qty: {{ item.quantity }}</span>
+              <button
+                class="remove-button"
+                (click)="removeFromCart(item.product.id)"
+              >
+                Remove
+              </button>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="modal-footer">
+      <button class="clear-button" (click)="clearCart()">Clear Cart</button>
+    </div>
+  </div>
+</ng-container>
