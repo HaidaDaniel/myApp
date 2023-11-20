@@ -25,6 +25,7 @@ import { CommentItemComponent } from './components/comment-item/comment-item.com
 import { CommentsListComponent } from './components/comments-list/comments-list.component'
 import { CommentInputComponent } from './components/comment-input/comment-input.component'
 import { CartModalComponent } from './components/cart-modal/cart-modal.component'
+import { ScrollToTopButtonComponent } from './components/scroll-to-top-button/scroll-to-top-button.component'
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { CartModalComponent } from './components/cart-modal/cart-modal.component
     CommentItemComponent,
     CommentsListComponent,
     CommentInputComponent,
-    CartModalComponent
+    CartModalComponent,
+    ScrollToTopButtonComponent
   ],
   imports: [
     BrowserModule,

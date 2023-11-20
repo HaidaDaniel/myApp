@@ -34,7 +34,6 @@
           <h5>Description:</h5>
         </div>
         <div class="mb-3">{{ product.description }}</div>
-
         <div class="mb-3 border-top w-100">
           <app-comments-list
             class="comment-list"
@@ -42,9 +41,6 @@
             [productId]="product.id"
           ></app-comments-list>
           <app-comment-input [productId]="product.id"></app-comment-input>
-          <!-- <ng-template #loginMessage>
-          <div>Login please to make a review</div>
-        </ng-template> -->
         </div>
       </div>
     </div>

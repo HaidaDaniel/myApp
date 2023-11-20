@@ -13,7 +13,6 @@ export class AuthEffects {
       mergeMap(({ email, password }) =>
         this.authService.login(email, password).pipe(
           map((response) => {
-            // document.cookie = `refreshToken=${response.refreshToken}; max-age=36000`
             localStorage.setItem('token', response.accessToken)
             return AuthActions.loginSuccess({ email })
           }),

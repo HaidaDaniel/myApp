@@ -1,32 +1,23 @@
-// .card-styled {
-//   width: 100%;
-//   height: 100%;
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: space-between;
-// }
 @import '../../../styles.scss';
 .product-image-box {
   display: flex;
   align-items: center;
   align-self: center;
   width: 100%;
-  height: 62%;
+  height: 66%;
   padding: 0.5rem;
   text-align: center;
 }
-
 .product-image {
   max-width: 100%;
   max-height: 100%;
   padding: 0.25rem;
 }
-
 .product-card {
   display: flex;
   padding: 0.5rem;
   flex-direction: column;
-  height: 30%;
+  height: 26%;
   justify-content: space-between;
   align-items: center;
 }
@@ -53,25 +44,6 @@
 }
 $margin: 0.4rem;
 
-.card-styled {
-  margin: $margin;
-  height: 48.5rem;
-  @media #{$xl} {
-    height: 44rem;
-  }
-
-  @media #{$lg} {
-    height: 44rem;
-  }
-
-  @media #{$md} {
-    height: 50rem;
-  }
-
-  @media #{$sm} {
-    height: 60rem;
-  }
-}
 .price-text {
   font-size: medium;
   margin: 0;
@@ -98,4 +70,23 @@ $margin: 0.4rem;
   flex-wrap: wrap;
   align-content: center;
   justify-content: space-between;
+}
+.card-styled {
+  margin: $margin;
+  height: 48.5rem;
+  @media #{$xl} {
+    height: 44rem;
+  }
+
+  @media #{$lg} {
+    height: 44rem;
+  }
+
+  @media #{$md} {
+    height: 50rem;
+  }
+
+  @media #{$sm} {
+    height: 60rem;
+  }
 }
