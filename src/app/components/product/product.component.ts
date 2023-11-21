@@ -13,7 +13,6 @@ export class ProductComponent {
   constructor(private store: Store) {}
 
   addToCart(product: IProduct) {
-    console.log(product, 1)
     this.store.dispatch(CartActions.addToCart({ product, quantity: 1 }))
   }
 }

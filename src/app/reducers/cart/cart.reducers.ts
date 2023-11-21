@@ -45,9 +45,13 @@ export const cartReducer = createReducer(
     items: state.items.filter((item) => item.product.id !== productId)
   })),
   on(updateCartItemQuantity, (state, { productId, quantity }) => {
-    const updatedItems = state.items.map((item) =>
-      item.product.id === productId ? { ...item, quantity } : item
-    )
+    const updatedItems = state.items
+      .map((item) =>
+        item.product.id === productId
+          ? { ...item, quantity: item.quantity + quantity }
+          : item
+      )
+      .filter((item) => item.quantity > 0)
 
     return { ...state, items: updatedItems }
   }),

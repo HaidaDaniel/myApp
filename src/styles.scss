@@ -21,3 +21,6 @@ body {
   background-color: $body-bg;
   font-family: Roboto, 'Helvetica Neue', sans-serif;
 }
+.modal {
+  --bs-modal-width: 90%;
+}

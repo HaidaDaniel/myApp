@@ -1,29 +1,64 @@
 <ng-container>
   <div class="cart-modal">
     <div class="modal-header">
+      <h5 class="modal-title">Shopping Cart:</h5>
       <button class="close-button" (click)="closeModal()">Close</button>
     </div>
     <div class="modal-body">
-      <div class="modal-title">Shopping Cart:</div>
-      <ul>
-        <li *ngFor="let item of cartItems$ | async">
-          <div class="cart-item">
-            <span class="cart-item-title">{{ item.product.title }}</span>
-            <div>
-              <span> Qty: {{ item.quantity }}</span>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Product</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Price</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of cartItems$ | async">
+            <td>{{ item.product.title }}</td>
+            <td>
               <button
-                class="remove-button"
+                class="btn btn-secondary"
+                (click)="decrementQuantity(item.product.id, -1)"
+              >
+                -
+              </button>
+              {{ item.quantity }}
+              <button
+                class="btn btn-secondary"
+                (click)="incrementQuantity(item.product.id, 1)"
+              >
+                +
+              </button>
+            </td>
+            <td>{{ getTotalPrice(item.quantity, item.product.price) }} USD</td>
+            <td>
+              <button
+                class="btn btn-danger"
                 (click)="removeFromCart(item.product.id)"
               >
-                Remove
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="32"
+                  height="32"
+                  fill="currentColor"
+                  class="bi bi-x"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"
+                  />
+                </svg>
               </button>
-            </div>
-          </div>
-        </li>
-      </ul>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <button class="btn btn-warning" (click)="clearCart()">Clear Cart</button>
     </div>
     <div class="modal-footer">
-      <button class="clear-button" (click)="clearCart()">Clear Cart</button>
+      <h4>Total: {{ totalCartPrice$ | async }} USD</h4>
     </div>
   </div>
 </ng-container>

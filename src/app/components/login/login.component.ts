@@ -56,7 +56,7 @@ export class LoginComponent implements OnDestroy {
           } else if (authState.isAuth) {
             this.modalService.openModal(
               'Login Successful',
-              'Return to home page',
+              'Return to previous',
               () => {
                 this.modalService.closeModal(), this.onCloseModal()
               }
